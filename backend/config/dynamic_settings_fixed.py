@@ -183,11 +183,16 @@ class Settings(BaseSettings):
         }
     
     model_config = SettingsConfigDict(
-        env_file=Path(__file__).resolve().parent.parent / '.env',
+        env_file=(
+            Path(__file__).resolve().parent.parent / '.env.production'
+            if os.getenv('ENVIRONMENT', 'local').lower() == 'production'
+            else Path(__file__).resolve().parent.parent / '.env'
+        ),
         env_file_encoding='utf-8',
         extra='ignore',
         case_sensitive=True,
     )
-    
+
+
 settings = Settings()
 

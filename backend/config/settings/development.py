@@ -18,23 +18,22 @@ DEBUG = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME', dyn_settings.DB_NAME),
-        'USER': os.environ.get('DB_USER', dyn_settings.DB_USER),
-        'PASSWORD': os.environ.get('DB_PASSWORD', dyn_settings.DB_PASSWORD),
-        # Use maggicaihub.com for local development (not Docker "db" hostname)
-        'HOST': os.environ.get('DB_HOST', 'maggicaihub.com'),
-        'PORT': os.environ.get('DB_PORT', dyn_settings.DB_PORT),
+        'NAME': dyn_settings.DB_NAME,
+        'USER': dyn_settings.DB_USER,
+        'PASSWORD': dyn_settings.DB_PASSWORD,
+        'HOST': dyn_settings.DB_HOST,
+        'PORT': dyn_settings.DB_PORT,
         
         # Transaction management
         'ATOMIC_REQUESTS': True,
         
         # Connection pooling
-        'CONN_MAX_AGE': int(os.environ.get('DB_CONN_MAX_AGE', dyn_settings.DB_CONN_MAX_AGE)),
+        'CONN_MAX_AGE': dyn_settings.DB_CONN_MAX_AGE,
         
         # PostgreSQL optimizations
         'OPTIONS': {
             'connect_timeout': 10,
-            'options': '-c statement_timeout=30000',
+            'sslmode': dyn_settings.DB_SSL_MODE,
         },
     }
 }
@@ -57,15 +56,19 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # ===================
 # CHANNELS - Redis for development (use maggicaihub.com, DB 1 for channels)
 # ===================
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
+#         'CONFIG': {
+#             'hosts': [os.environ.get('REDIS_URL', 'redis://maggicaihub.com:6379/1')],
+#         },
+#     },
+# }
 CHANNEL_LAYERS = {
     'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            'hosts': [os.environ.get('REDIS_URL', 'redis://maggicaihub.com:6379/1')],
-        },
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
     },
 }
-
 # Force using maggicaihub.com for local development (not Docker)
 import socket
 if os.environ.get('DOCKER_CONTAINER') != 'true':
@@ -86,15 +89,21 @@ INSTALLED_APPS += [
 # ===================
 # CACHE - Redis for development
 # ===================
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+#         'LOCATION': os.environ.get('CACHE_URL', dyn_settings.CACHE_URL),
+#         'KEY_PREFIX': dyn_settings.CACHE_KEY_PREFIX,
+#         'TIMEOUT': dyn_settings.CACHE_TIMEOUT_DEFAULT,
+#     }
+# }
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
-        'LOCATION': os.environ.get('CACHE_URL', dyn_settings.CACHE_URL),
-        'KEY_PREFIX': dyn_settings.CACHE_KEY_PREFIX,
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'hospital-dev-cache',
         'TIMEOUT': dyn_settings.CACHE_TIMEOUT_DEFAULT,
     }
 }
-
 # ===================
 # CELERY - Development configuration
 # ===================
