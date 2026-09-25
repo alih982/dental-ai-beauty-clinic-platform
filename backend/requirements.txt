@@ -1,0 +1,62 @@
+# Backend Dependencies - Django + DRF + Channels
+
+# Core Django
+Django>=4.2,<5.0
+djangorestframework==3.14.0
+django-cors-headers==4.3.1
+
+# Async Django
+channels>=4.0.0
+channels-redis>=4.1.0
+daphne>=4.0.0
+adrf>=0.1.0
+celery>=5.3.6
+redis>=5.0.1
+
+# Celery Beat for scheduled tasks
+django-celery-beat>=2.5.0
+
+# Async DRF (for async views)
+adrf>=0.1.4
+
+# Database
+psycopg2-binary>=2.9.9
+django-redis>=5.4.0
+
+# Authentication & Security
+djangorestframework-simplejwt>=5.3.1
+django-environ>=0.11.2
+pydantic==2.10.0
+pydantic-settings==2.6.1
+
+# API Documentation
+drf-spectacular>=0.27.0
+
+# Async utilities
+aiohttp>=3.9.1
+httpx==0.25.2
+requests>=2.31.0
+django-filter>=23.0
+
+# AI & MLOps
+mlflow>=2.10.0
+# Utilities
+pillow>=10.2.0
+python-dateutil>=2.8.2
+pytz>=2023.3
+reportlab>=4.0.0
+python-json-logger>=2.0.7
+
+# Development
+django-extensions>=3.2.3
+ipython
+channels_redis
+
+asgiref>=3.3.0
+
+
+# Payment Gateways
+# stripe==7.8.1  # Uncomment for Stripe integration
+
+# SMS Services
+# twilio==8.11.1  # Uncomment for Twilio integration

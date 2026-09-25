@@ -1,0 +1,28 @@
+# AI Service - Minimal Dependencies for Iran/Runflare
+# Only essential packages - heavy/optional ones removed
+
+# FastAPI + Server
+fastapi==0.115.0
+uvicorn[standard]==0.27.0
+pydantic==2.10.0
+pydantic-settings==2.6.1
+python-multipart==0.0.6
+
+# Database
+# sqlalchemy==2.0.25
+sqlalchemy>=2.0.31
+psycopg[binary]>=3.2.0
+
+# AI Model (local inference)
+transformers>=4.38.0
+torch>=2.1.0
+accelerate>=0.26.0
+safetensors==0.4.1
+peft>=0.8.0
+
+# Image Processing (vision service)
+numpy>=1.24.0
+Pillow>=10.0.0
+
+# Utilities
+httpx==0.25.2

@@ -1,0 +1,96 @@
+# ---------- Node / Next.js ----------
+node_modules/
+.next/
+out/
+build/
+dist/
+*.tsbuildinfo
+next-env.d.ts
+.npm
+.pnpm-store/
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# ---------- Testing ----------
+coverage/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+*.egg-info/
+.eggs/
+
+# ---------- Django ----------
+*.log
+db.sqlite3
+db.sqlite3-journal
+/media/
+/staticfiles/
+local_settings.py
+logs/
+
+# ---------- Env ----------
+.env
+.env.local
+.env.*.local
+.env.backup.*
+.env.bak
+!.env.example
+
+# ---------- AI Models ----------
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.onnx
+*.h5
+*.ckpt
+*.pkl
+*.joblib
+ai_service/app/ai_model/
+ai_service/app/lora_model/
+models/
+checkpoints/
+
+# ---------- Vector DB ----------
+*.faiss
+*.index
+chroma_db/
+qdrant_storage/
+weaviate_data/
+
+# ---------- Docker volumes ----------
+postgres_data/
+pgadmin_data/
+ollama_data/
+redis_data/
+
+# ---------- Vercel ----------
+.vercel
+
+# ---------- IDE / OS ----------
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+._*
+Thumbs.db
+desktop.ini
